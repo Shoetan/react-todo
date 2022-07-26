@@ -22,9 +22,10 @@ const handleChange = (event) => {
 
 const addTask = () =>{
 
-  /* use the tenary operator to add a task only if the input field is not empty */
-
-  newTask !=="" ? setTodos([...todos, newTask]) : console.log('Enter a task');
+/**
+ * *The tenary opertion is in use here to check if the input field is empty or not.If empty dispaly an error message if not add the task to the array but the task added is an object consisting of a unique id the that takes the length of the items in the array and adds one to it and the new task that was typed in the input field.
+ */
+  newTask !=="" ? setTodos([...todos, {id:todos.length + 1 ,task:newTask}]) : console.log('Enter a task');
 
   console.log(todos);
   /* Clear the input field once the add task button is clicked */
@@ -43,11 +44,12 @@ const addTask = () =>{
       </div>
 
 
-    {/* Display the list in the array */}
+    {/* Loop through the array that is made up of objects with unique id */}
       <div>
-          {todos.map((todo, key)=>{
+          {todos.map((todo)=>{
+            
             {/* return a component here for the todos */}
-            return  <Todos  todo = {todo}/>
+            return  <Todos  todo = {todo.task}/>
            
           })}
       </div>

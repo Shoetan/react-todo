@@ -1,9 +1,10 @@
-const Todos = ({todo, key}) => {
+const Todos = ({todo}) => {
     return (  
-        <div>
-            <li className="text-black">
+        <div className=" container mx-auto  mt-6 flex justify-around">
+            <h1 className="text-black">
                     {todo}
-            </li>
+            </h1>
+            <button className="bg-gray-400 p-2 w-auto">x</button>
         </div>
     );
 }
