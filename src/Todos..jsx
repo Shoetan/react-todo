@@ -1,10 +1,10 @@
-const Todos = ({todo}) => {
+const Todos = ({todo, delTodo}) => {
     return (  
         <div className=" container mx-auto  mt-6 flex justify-around">
             <h1 className="text-black">
                     {todo}
             </h1>
-            <button className="bg-gray-400 p-2 w-auto">x</button>
+            <button className="bg-slate-400" onClick={delTodo}>x</button>
         </div>
     );
 }

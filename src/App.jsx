@@ -27,10 +27,21 @@ const addTask = () =>{
  */
   newTask !=="" ? setTodos([...todos, {id:todos.length + 1 ,task:newTask}]) : console.log('Enter a task');
 
-  console.log(todos);
   /* Clear the input field once the add task button is clicked */
   setNewTask("")
  
+}
+
+/* 
+*Below is a deltask function.This function receives a parameter of id. Each id is unique within the array of tasks. The filter method is applied to array to return a set of new array containing all items whose id does not match the givin id parameter
+ */
+const delTask = (id) => {
+    const newTodo = todos.filter((todo)=>{
+      return (todo.id !== id)
+    })
+
+/* updates the tasks list array with a new set of items excluding that with the id given as a parameter in the function*/
+    setTodos(newTodo)
 }
 
 
@@ -49,9 +60,10 @@ const addTask = () =>{
           {todos.map((todo)=>{
             
             {/* return a component here for the todos */}
-            return  <Todos  todo = {todo.task}/>
+            return  <Todos  todo = {todo.task} delTodo = {()=>{delTask(todo.id)}} />
            
           })}
+          
       </div>
 
     </div>
