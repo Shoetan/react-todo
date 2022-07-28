@@ -1,10 +1,27 @@
-const Todos = ({todo, delTodo}) => {
+const Todos = ({todo, delTodo, markDone,complete}) => {
     return (  
-        <div className=" w-96 mx-auto  mt-6 flex justify-around border-b-2 border-slate-400">
-            <h1 className="text-black">
+        <div className={" w-96 mx-auto  mt-6 flex justify-between border-b-2 border-slate-400"}>
+      {/* 
+         *Conditional rendering if the complete prop is true render the h1 tag that has the line through style else render the h1 tag without the line through style
+      
+       */}
+        { complete ? 
+        
+        
+            <h1 className="text-black font-bold line-through"> 
+                    {todo}
+            </h1> :  <h1 className="text-black font-bold"> 
                     {todo}
             </h1>
-            <button className="text-indigo-400 font-bold rounded py-2 w-2/12 bg-gray-900 mb-2" onClick={delTodo}>x</button>
+
+             }
+           
+            
+            <div className="flex flex-row gap-5">
+                <button onClick={markDone}>&#10004;</button>
+                <button  onClick={delTodo}>X</button>
+            </div>
+            
         </div>
     );
 }

@@ -25,7 +25,7 @@ const addTask = () =>{
 /**
  * *The tenary opertion is in use here to check if the input field is empty or not.If empty dispaly an error message if not add the task to the array but the task added is an object consisting of a unique id the that takes the length of the items in the array and adds one to it and the new task that was typed in the input field.
  */
-  newTask !=="" ? setTodos([...todos, {id:todos.length + 1 ,task:newTask}]) : console.log('Enter a task');
+  newTask !=="" ? setTodos([...todos, {id:todos.length + 1 ,task:newTask, isDone: false}]) : console.log('Enter a task');
 
   /* Clear the input field once the add task button is clicked */
   setNewTask("")
@@ -44,6 +44,25 @@ const delTask = (id) => {
     setTodos(newTodo)
 }
 
+/* 
+* Below function is called a mark task done function. The sole purpose of this function is to the the id of a specific todo in the todo array and update a property called isDone to true
+ */
+
+const markTaskDone = (id) =>{
+  const newTodos = todos.map((todo) =>{
+    if(todo.id ===id){
+      return{...todo, isDone: true}
+    }
+    else{
+      return todo
+    }
+  })
+
+  setTodos(newTodos)
+
+ 
+}
+
 
 
   return ( 
@@ -60,7 +79,10 @@ const delTask = (id) => {
           {todos.map((todo)=>{
             
             {/* return a component here for the todos */}
-            return  <Todos  todo = {todo.task} delTodo = {()=>{delTask(todo.id)}} />
+            return  <Todos  todo = {todo.task} 
+            markDone = {()=>{markTaskDone(todo.id)}}
+            delTodo = {()=>{delTask(todo.id)}}
+            complete = {todo.isDone} />
            
           })}
           
